@@ -40,10 +40,10 @@
 
                 var path = window.location.pathname.split("/");
                 var nav = document.querySelector("nav#breadcrumbs ul");
-                var pathSoFar = "";
+                var pathSoFar = "/";
 
                 for (var i = 1; i < path.length - 1; i++) {
-                  pathSoFar += "/" + decodeURI(path[i]);
+                  pathSoFar += decodeURI(path[i]) + "/";
                   nav.innerHTML += '<li><a href="' + encodeURI(pathSoFar) + '">' + decodeURI(path[i]) + "</a></li>";
                 }
 

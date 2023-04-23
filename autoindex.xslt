@@ -15,6 +15,7 @@
 
     <html>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="https://kit.fontawesome.com/55eb9c16a8.js"></script>
         <script type="text/javascript">
           <![CDATA[
@@ -53,7 +54,7 @@
                   var mtime = mtimes[i].textContent;
                   if (mtime) {
                     var d = new Date(mtime);
-                    mtimes[i].textContent = d.toLocaleString();
+                    mtimes[i].textContent = d.toLocaleDateString();
                   }
                 }
 
@@ -79,8 +80,9 @@
             html {
               margin: 0px;
               padding: 0px;
-              height: 100%;
+              height: auto;
               width: 100%;
+              padding-bottom: 25px;
             }
             body {
               background-color: #303030;
@@ -97,6 +99,7 @@
               display: block;
               padding: 10px 30px 10px 30px;
               pointer: default;
+              -webkit-text-size-adjust: 100%;
             }
             table#contents {
               width: 50%;
@@ -166,6 +169,8 @@
             }
             nav#breadcrumbs ul li {
               float: left;
+              padding-top: 2.5px;
+              padding-bottom: 2.5px;
             }
             nav#breadcrumbs ul li a {
               color: #fff;

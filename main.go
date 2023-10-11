@@ -135,6 +135,10 @@ func handleZip(c echo.Context) error {
 				return nil
 			}
 		}
+		if f.IsDir() {
+			// no header for directory
+			return nil
+		}
 		header, err := zip.FileInfoHeader(f)
 		if err != nil {
 			return err
@@ -149,10 +153,6 @@ func handleZip(c echo.Context) error {
 		headerWriter, err := zipWriter.CreateHeader(header)
 		if err != nil {
 			return err
-		}
-		if f.IsDir() {
-			// no data needs to be written to directory
-			return nil
 		}
 		file, err := os.Open(path)
 		if err != nil {

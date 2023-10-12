@@ -3,7 +3,7 @@ module serve-zip
 go 1.19
 
 require (
-	github.com/alecthomas/kong v0.8.0
+	github.com/alecthomas/kong v0.8.1
 	github.com/facebookgo/symwalk v0.0.0-20150726040526-42004b9f3222
 	github.com/labstack/echo/v4 v4.11.2
 	github.com/rs/zerolog v1.30.0

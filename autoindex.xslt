@@ -22,6 +22,11 @@
             document.addEventListener(
               "DOMContentLoaded",
               function () {
+                var outLinks = document.querySelectorAll(".out-link");
+                for (var i = 0; i < outLinks.length; i++) {
+                  outLinks[i].href = encodeURI(decodeURI(outLinks[i].href));
+                }
+
                 function calculateSize(size) {
                   var sufixes = ["B", "KB", "MB", "GB", "TB"];
                   var output = size;
@@ -307,14 +312,16 @@
               <xsl:for-each select="directory">
                 <tr class="directory">
                   <td class="icon">
-                    <a href="{.}/"><i class="fa fa-folder"></i></a>
+                    <a href="{.}/" class="out-link"><i class="fa fa-folder"></i></a>
                   </td>
                   <td class="name">
-                    <a href="{.}/"><xsl:value-of select="." /></a>
+                    <a href="{.}/" class="out-link"><xsl:value-of select="." /></a>
                   </td>
-                  <td class="size"><a href="{.}/"></a></td>
+                  <td class="size">
+                    <a href="{.}/" class="out-link"></a>
+                  </td>
                   <td class="mtime">
-                    <a href="{.}/"><xsl:value-of select="./@mtime" /></a>
+                    <a href="{.}/" class="out-link"><xsl:value-of select="./@mtime" /></a>
                   </td>
                 </tr>
               </xsl:for-each>
@@ -328,16 +335,16 @@
               <xsl:for-each select="file">
                 <tr class="file">
                   <td class="icon">
-                    <a href="{.}"><i class="fa fa-file"></i></a>
+                    <a href="{.}" class="out-link"><i class="fa fa-file"></i></a>
                   </td>
                   <td class="name">
-                    <a href="{.}"><xsl:value-of select="." /></a>
+                    <a href="{.}" class="out-link"><xsl:value-of select="." /></a>
                   </td>
                   <td class="size">
-                    <a href="{.}"><xsl:value-of select="./@size" /></a>
+                    <a href="{.}" class="out-link"><xsl:value-of select="./@size" /></a>
                   </td>
                   <td class="mtime">
-                    <a href="{.}"><xsl:value-of select="./@mtime" /></a>
+                    <a href="{.}" class="out-link"><xsl:value-of select="./@mtime" /></a>
                   </td>
                 </tr>
               </xsl:for-each>

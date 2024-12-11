@@ -17,12 +17,11 @@ github.com/facebookgo/symwalk v0.0.0-20150726040526-42004b9f3222/go.mod h1:PgrCj
 github.com/facebookgo/testname v0.0.0-20150612200628-5443337c3a12 h1:pKeuUgeuL6jk/FpxSr0ZVL1XEiOmrcWBvB2rKXu0mMI=
 github.com/facebookgo/testname v0.0.0-20150612200628-5443337c3a12/go.mod h1:IYed2VYeQcs7JTN6KiVXjaz6Rv/Qz092Wjc6o5bCJ9I=
 github.com/godbus/dbus/v5 v5.0.4/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
-github.com/golang-jwt/jwt v3.2.2+incompatible h1:IfV12K8xAKAnZqdXVzCZ+TOjboZ2keLg81eXfW3O+oY=
 github.com/golang-jwt/jwt v3.2.2+incompatible/go.mod h1:8pz2t5EyA70fFQQSrl6XZXzqecmYZeUEB8OUGHkxJ+I=
 github.com/hexops/gotextdiff v1.0.3 h1:gitA9+qJrrTCsiCl7+kh75nPqQt1cx4ZkudSTLoUqJM=
 github.com/labstack/echo/v4 v4.6.1/go.mod h1:RnjgMWNDB9g/HucVWhQYNQP9PvbYf6adqftqryo7s9k=
-github.com/labstack/echo/v4 v4.12.0 h1:IKpw49IMryVB2p1a4dzwlhP1O2Tf2E0Ir/450lH+kI0=
-github.com/labstack/echo/v4 v4.12.0/go.mod h1:UP9Cr2DJXbOK3Kr9ONYzNowSh7HP0aG0ShAyycHSJvM=
+github.com/labstack/echo/v4 v4.13.1 h1:q3+CpQlYhJwpRr9+08pX0IdlabTIpnIhrg2AKPSKhFE=
+github.com/labstack/echo/v4 v4.13.1/go.mod h1:61j7WN2+bp8V21qerqRs4yVlVTGyOagMBpF0vE7VcmM=
 github.com/labstack/gommon v0.3.0/go.mod h1:MULnywXg0yavhxWKc+lOruYdAhDwPK9wf0OL7NoOu+k=
 github.com/labstack/gommon v0.4.2 h1:F8qTUNXgG1+6WQmqoUWnz8WiEU60mXVVw0P4ht1WRA0=
 github.com/labstack/gommon v0.4.2/go.mod h1:QlUFxVM+SNXhDL/Z7YhocGIBYOiwB0mXm1+1bAPHPyU=

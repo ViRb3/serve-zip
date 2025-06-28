@@ -121,7 +121,10 @@ func handleZip(c echo.Context) error {
 	} else {
 		zipName = filepath.Base(requestPath)
 	}
+
+	c.Response().Header().Set("Content-Type", "application/zip")
 	c.Response().Header().Set("Content-Disposition", "attachment; filename=\""+zipName+".zip\"")
+
 	zipWriter := zip.NewWriter(c.Response().Writer)
 	defer zipWriter.Close()
 	if err := osWalk(servePath, func(path string, f fs.FileInfo, err error) error {

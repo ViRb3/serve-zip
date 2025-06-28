@@ -135,34 +135,39 @@ func handleZip(c echo.Context) error {
 				return nil
 			}
 		}
-		if f.IsDir() {
-			// no header for directory
-			return nil
+		// include the parent directory to make extraction cleaner
+		rel, err := filepath.Rel(filepath.Join(servePath, ".."), path)
+		if err != nil {
+			return err
 		}
 		header, err := zip.FileInfoHeader(f)
 		if err != nil {
 			return err
 		}
-		rel, err := filepath.Rel(filepath.Join(servePath, ".."), path)
-		if err != nil {
-			return err
-		}
 		// make the paths consistent between OSes
 		header.Name = filepath.ToSlash(rel)
-		header.Method = CLI.Level
-		headerWriter, err := zipWriter.CreateHeader(header)
-		if err != nil {
-			return err
+		if f.IsDir() {
+			header.Name += "/"
+			if _, err := zipWriter.CreateHeader(header); err != nil {
+				return err
+			}
+			return nil
+		} else {
+			header.Method = CLI.Level
+			headerWriter, err := zipWriter.CreateHeader(header)
+			if err != nil {
+				return err
+			}
+			file, err := os.Open(path)
+			if err != nil {
+				return err
+			}
+			defer file.Close()
+			if _, err := io.Copy(headerWriter, file); err != nil {
+				return err
+			}
+			return nil
 		}
-		file, err := os.Open(path)
-		if err != nil {
-			return err
-		}
-		defer file.Close()
-		if _, err := io.Copy(headerWriter, file); err != nil {
-			return err
-		}
-		return nil
 	}); err != nil {
 		return err
 	}

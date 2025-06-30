@@ -40,10 +40,7 @@ func main() {
 		}),
 	)
 
-	CLI.Prefix = path.Clean("//" + CLI.Prefix)
-	if !strings.HasSuffix(CLI.Prefix, "/") {
-		CLI.Prefix += "/"
-	}
+	CLI.Prefix = path.Clean("/"+CLI.Prefix) + "/"
 	if CLI.Level > 9 {
 		log.Fatal().Msg("level cannot exceed 9")
 	}
@@ -104,11 +101,9 @@ func handleZip(c echo.Context) error {
 	if !CLI.Hidden && strings.Contains(requestPath, "/.") {
 		return errNotFound(c)
 	}
-	servePath, err := resolvePath(requestPath)
-	if errors.Is(err, ErrPrefix) {
+	servePath, err := resolvePath(CLI.Root, CLI.Prefix, requestPath)
+	if err != nil {
 		return errBadRequest(c, err)
-	} else if err != nil {
-		return err
 	}
 	if _, err := osStat(servePath); os.IsNotExist(err) {
 		return errNotFound(c)
@@ -172,14 +167,20 @@ func handleZip(c echo.Context) error {
 	return nil
 }
 
-// Resolves file paths relative to CLI.Root, stripping away CLI.Prefix.
+// Resolves file paths relative to rootPath, stripping away prefixPath.
 // Prevents any directory traversal attacks.
-func resolvePath(unsafePath string) (string, error) {
-	unsafePath = filepath.Clean("//" + unsafePath)
-	if !strings.HasPrefix(unsafePath, CLI.Prefix) {
+func resolvePath(rootPath, prefixPath, unsafePath string) (string, error) {
+	if !strings.HasPrefix(unsafePath, prefixPath) {
 		return "", ErrPrefix
 	}
-	unsafePath = unsafePath[len(CLI.Prefix):]
-	newPath := filepath.Join(CLI.Root, filepath.Clean("//"+unsafePath))
+	unsafePath = unsafePath[len(prefixPath):]
+	if unsafePath == "" {
+		unsafePath = "."
+	}
+	safePath, err := filepath.Localize(unsafePath)
+	if err != nil {
+		return "", err
+	}
+	newPath := filepath.Join(rootPath, safePath)
 	return newPath, nil
 }

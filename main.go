@@ -22,7 +22,7 @@ import (
 var CLI struct {
 	Symlinks bool   `help:"Follow symlinks. WARNING: Allows escaping the root path!"`
 	Hidden   bool   `help:"Serve files and directories that start with dot."`
-	Level    uint16 `help:"ZIP compression level (0/store - 9/highest)." default:"0"`
+	Deflate  bool   `help:"Use deflate compression if true, otherwise store." default:"false"`
 	Prefix   string `help:"URL prefix to be removed before serving." default:"/"`
 	Root     string `arg:"" help:"Path from which to serve files." type:"existingdir"`
 	Host     string `help:"Host on which to listen, empty for all." default:""`
@@ -46,10 +46,6 @@ func main() {
 	CLI.Prefix = path.Clean(CLI.Prefix)
 	if CLI.Prefix != "/" {
 		CLI.Prefix += "/"
-	}
-
-	if CLI.Level > 9 {
-		log.Fatal().Msg("level cannot exceed 9")
 	}
 
 	var consoleWriter io.Writer
@@ -158,7 +154,10 @@ func handleZip(c echo.Context) error {
 			}
 			return nil
 		} else {
-			header.Method = CLI.Level
+			header.Method = zip.Store
+			if CLI.Deflate {
+				header.Method = zip.Deflate
+			}
 			headerWriter, err := zipWriter.CreateHeader(header)
 			if err != nil {
 				return err

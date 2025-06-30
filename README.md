@@ -64,9 +64,3 @@ This server is a dependency for setting up a dead simple, modern file browser us
      root /my-data/;
    }
    ```
-
-## Credits
-
-[autoindex.xslt](./autoindex.xslt) is a modified version of [Nginx-Autoindex](https://github.com/EvilVir/Nginx-Autoindex).
-
-This server borrows some code from [gosses](https://github.com/ViRb3/gosses).

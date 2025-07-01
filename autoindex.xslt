@@ -15,7 +15,7 @@
 
     <html>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <meta charset="UTF-8" />
         <title>Directory Index</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -140,7 +140,7 @@
               color: var(--text-primary);
               padding: 0.5rem 2.5rem 0.5rem 0.75rem;
               border-radius: 0.375rem;
-              font-size: 0.875rem;
+              font-size: 1rem;
               width: 200px;
               transition: all 0.2s ease;
             }
@@ -346,7 +346,6 @@
             }
 
             .file-size {
-              min-width: 4rem;
               text-align: right;
             }
 
@@ -384,10 +383,13 @@
                 font-size: 0.8125rem;
               }
 
-              .file-size,
+              .file-size {
+                text-align: right;
+              }
+
               .file-date {
-                min-width: auto;
-                text-align: left;
+                min-width: 5rem;
+                text-align: right;
               }
             }
 

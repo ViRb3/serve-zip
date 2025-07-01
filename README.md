@@ -18,22 +18,22 @@ This server is a dependency for setting up a dead simple, modern file browser us
 1. Run this server using the binary in releases or [Docker image](https://hub.docker.com/r/virb3/serve-zip). Run with `--help` to see all available options:
 
    ```bash
-   Usage: serve-zip <root>
-   
-   Simple HTTP server that streams directories as a ZIP.
-   
-   Arguments:
-     <root>    Path from which to serve files.
-   
-   Flags:
-     -h, --help          Show context-sensitive help.
-         --symlinks      Follow symlinks. WARNING: Allows escaping the root path!
-         --hidden        Serve files and directories that start with dot.
-         --level=0       ZIP compression level (0/store - 9/highest).
-         --prefix="/"    URL prefix to be removed before serving.
-         --host=""       Host on which to listen, empty for all.
-         --port=8080     Port on which to listen.
-         --json          Log in JSON instead of pretty printing.
+    Usage: serve-zip <root> [flags]
+
+    Simple HTTP server that streams directories as a ZIP.
+
+    Arguments:
+      <root>    Path from which to serve files.
+
+    Flags:
+      -h, --help          Show context-sensitive help.
+          --symlinks      Follow symlinks. WARNING: Allows escaping the root path!
+          --hidden        Serve files and directories that start with dot.
+          --deflate       Use deflate compression if true, otherwise store.
+          --prefix="/"    URL prefix to be removed before serving.
+          --host=""       Host on which to listen, empty for all.
+          --port=8080     Port on which to listen.
+          --json          Log in JSON instead of pretty printing.
    ```
 
 2. In your `/etc/nginx/nginx.conf`, add the following line at the top:

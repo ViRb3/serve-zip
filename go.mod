@@ -5,7 +5,7 @@ go 1.24.0
 toolchain go1.24.1
 
 require (
-	github.com/alecthomas/kong v1.13.0
+	github.com/alecthomas/kong v1.14.0
 	github.com/facebookgo/symwalk v0.0.0-20150726040526-42004b9f3222
 	github.com/labstack/echo/v4 v4.15.0
 	github.com/rs/zerolog v1.34.0

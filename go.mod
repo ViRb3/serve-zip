@@ -5,7 +5,7 @@ go 1.26.0
 require (
 	github.com/alecthomas/kong v1.17.0
 	github.com/facebookgo/symwalk v0.0.0-20150726040526-42004b9f3222
-	github.com/labstack/echo/v4 v4.16.3
+	github.com/labstack/echo/v4 v4.16.6
 	github.com/rs/zerolog v1.35.1
 	github.com/ziflex/lecho/v2 v2.5.2
 )
